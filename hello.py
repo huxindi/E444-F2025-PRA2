@@ -29,12 +29,13 @@ def index():
         if "utoronto" in email.lower():
             first_name = name.split()[0] if name else "Stranger"
             greeting = f"Hello {first_name},"
-            email_info = f"Your email is {email}."
+            email_info = f"Your UofT email is {email}."
         else:
             greeting = f"Hello {name}!" if name else "Hello Stranger!"
-            email_info = f"Please use your UofT email address"
+            email_info = f"Please use your UofT email"
             flash("Looks like you have changed your name!")
             flash("Looks like you have changed your name!")
+        form = NameForm(formdata=None)
 
     return render_template(
         "index.html",
