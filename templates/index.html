@@ -1,19 +1,26 @@
 {% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-{% block content %}
-  <div class="container mt-4">
-    <h1>Hello {{ name }}!</h1>
+{% block page_content %}
+<div class="container mt-4">
 
-    <p>
-      The local date and time is {{ moment(current_time).format('LLL') }}.
-    </p>
-    <p>
-      That was {{ moment(current_time).fromNow(refresh=True) }}.
-    </p>
-  </div>
-{% endblock %}
+    {% with msgs = get_flashed_messages() %}
+    {% if msgs %}
+    {% for m in msgs %}
+    <div class="alert alert-info" role="alert">
+        {{ m }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
 
-{% block scripts %}
-  {{ super() }}
-  {{ moment.include_moment() }}
+    <h1>{{ greeting }}</h1>
+    {% if email_info %}
+    <h1>{{ email_info }}</h1>
+    {% endif %}
+
+    <div class="mt-3">
+        {{ wtf.quick_form(form) }}
+    </div>
+</div>
 {% endblock %}
