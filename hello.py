@@ -20,7 +20,7 @@ class NameForm(FlaskForm):
 @app.route("/", methods=["GET", "POST"])
 def index():
     form = NameForm()
-    greeting = "Hello Stranger!"
+    greeting = "Hello Stranger! Welcome to PRA2 Docker!"
     email_info = None
 
     if form.validate_on_submit():
@@ -28,10 +28,10 @@ def index():
         email = (form.email.data or "").strip()
         if "utoronto" in email.lower():
             first_name = name.split()[0] if name else "Stranger"
-            greeting = f"Hello {first_name},"
+            greeting = f"Hello {first_name}, Welcome to PRA2 Docker!"
             email_info = f"Your UofT email is {email}."
         else:
-            greeting = f"Hello {name}!" if name else "Hello Stranger!"
+            greeting = f"Hello {name}! Welcome to PRA2 Docker!" if name else "Hello Stranger! Welcome to PRA2 Docker!"
             email_info = f"Please use your UofT email"
             flash("Looks like you have changed your name!")
             flash("Looks like you have changed your name!")
@@ -47,7 +47,7 @@ def index():
 @app.route("/user/<name>")
 def user(name):
     form = NameForm()
-    greeting = f"Hello {name}!"
+    greeting = f"Hello {name}! Welcome to PRA2 Docker!"
     return render_template(
         "index.html",
         form=form,
